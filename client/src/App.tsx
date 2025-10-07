@@ -1,20 +1,33 @@
-import { useState } from 'react'
+import { ThemeProvider } from './theme'
+import TopBar from './components/TopBar'
 import Browse from './pages/Browse'
 import Admin from './pages/Admin'
 import Upload from './pages/Upload'
+import { useState } from 'react'
 
-export default function App(){
-  const [page, setPage] = useState<'browse'|'admin'|'upload'>('browse')
+export default function AppRoot(){
+  return (
+    <ThemeProvider>
+      <App/>
+    </ThemeProvider>
+  )
+}
+
+function App(){
+  const [page, setPage] = useState<'browse'|'upload'|'admin'>('browse')
   return (
     <div className="container">
-      <header>
-        <h1>CIAP Portal</h1>
-        <nav>
-          <a className={page==='browse'?'active':''} href="#" onClick={()=>setPage('browse')}>Browse</a>
-          <a className={page==='upload'?'active':''} href="#" onClick={()=>setPage('upload')}>Upload</a>
-          <a className={page==='admin'?'active':''} href="#" onClick={()=>setPage('admin')}>Admin</a>
-        </nav>
-      </header>
+      <TopBar />
+      <nav className="grid" style={{marginBottom: 16}}>
+        <div className="card" style={{display:'flex', gap:8, alignItems:'center', justifyContent:'space-between'}}>
+          <div style={{display:'flex', gap:8, flexWrap:'wrap'}}>
+            <button className={`btn ${page==='browse'?'primary':'secondary'}`} onClick={()=>setPage('browse')}>Browse</button>
+            <button className={`btn ${page==='upload'?'primary':'secondary'}`} onClick={()=>setPage('upload')}>Upload</button>
+            <button className={`btn ${page==='admin'?'primary':'secondary'}`} onClick={()=>setPage('admin')}>Admin</button>
+          </div>
+          <span className="badge">v0.2</span>
+        </div>
+      </nav>
       {page==='browse' && <Browse/>}
       {page==='upload' && <Upload/>}
       {page==='admin' && <Admin/>}
