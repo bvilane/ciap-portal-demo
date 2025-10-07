@@ -1,0 +1,22 @@
+[
+  {
+    "id": "p1",
+    "title": "Community Guidelines (PDF)",
+    "url": "/static/pdfs/ciap-guidelines.pdf"
+  },
+  {
+    "id": "p2",
+    "title": "Student Study Pack (PDF)",
+    "url": "/static/pdfs/study-pack.pdf"
+  },
+  {
+    "id": "p3",
+    "title": "Digital Safety Checklist",
+    "url": "https://www.owasp.org/images/3/3f/OWASP_Secure_Online_Safety_Checklist.pdf"
+  },
+  {
+    "id": "p4",
+    "title": "Small Business Starter Pack",
+    "url": "https://www.gov.za/sites/default/files/gcis_document/2023-02/smmestarterpack.pdf"
+  }
+]
