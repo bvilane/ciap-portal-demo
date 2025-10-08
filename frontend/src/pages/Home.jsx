@@ -1,4 +1,4 @@
-
+// frontend/src/pages/Home.jsx
 import React, { useEffect, useState } from 'react'
 import hero from '../assets/hero.jpg'
 
@@ -22,14 +22,17 @@ export default function Home(){
           <div>
             <div className="badge">Welcome to CIAP</div>
             <h1>Bringing the Internet Closer, Even When It’s Gone</h1>
-            <p>A locally powered community network that keeps learning, health, and civic content available even when connectivity drops. CIAP uses mesh networking and smart caching to deliver fast, low-cost internet access designed for Africa’s offline-first communities.
+            <p>
+              A locally powered community network that keeps learning, health, and civic content available
+              even when connectivity drops. CIAP uses mesh networking and smart caching to deliver fast,
+              low-cost internet access designed for Africa’s offline-first communities.
             </p>
             <div style={{display:'flex',gap:12,marginTop:12}}>
               <a className="btn" href="#videos">Watch Tutorials</a>
               <a className="btn" href="#pdfs" style={{background:'#111827'}}>Important PDFs</a>
             </div>
           </div>
-          <img src={hero} alt="Harbor hero" />
+          <img src={hero} alt="Hero" />
         </div>
       </section>
 
@@ -60,11 +63,19 @@ export default function Home(){
               <div key={t.id} className="card" style={{gridColumn:'span 6'}}>
                 <h3>{t.title}</h3>
                 <div style={{position:'relative',paddingTop:'56.25%'}}>
-                  <iframe style={{position:'absolute',inset:0,width:'100%',height:'100%',border:0}} 
-                    src={t.url.replace('watch?v=','embed/')} 
+                  <iframe
+                    style={{position:'absolute',inset:0,width:'100%',height:'100%',border:0}}
+                    src={
+                      t.url.includes('embed')
+                        ? t.url
+                        : t.url
+                            .replace('watch?v=','embed/')
+                            .replace('youtu.be/','youtube.com/embed/')
+                    }
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
-                    title={t.title}></iframe>
+                    title={t.title}
+                  />
                 </div>
               </div>
             ))}
@@ -78,7 +89,13 @@ export default function Home(){
           <ul className="list">
             {pdfs.map(p => (
               <li key={p.id}>
-                <a href={`${p.url.startsWith('http') ? '' : API}${p.url}`} target="_blank" rel="noreferrer">{p.title}</a>
+                <a
+                  href={`${p.url.startsWith('http') ? '' : API}${p.url}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {p.title}
+                </a>
                 <span className="badge-soft">PDF</span>
               </li>
             ))}

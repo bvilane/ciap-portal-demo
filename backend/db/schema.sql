@@ -1,4 +1,3 @@
--- Users (simple demo auth / roles)
 CREATE TABLE IF NOT EXISTS users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT NOT NULL,
@@ -6,7 +5,6 @@ CREATE TABLE IF NOT EXISTS users (
   role TEXT CHECK(role IN ('admin','viewer')) NOT NULL DEFAULT 'viewer'
 );
 
--- News (cards on homepage)
 CREATE TABLE IF NOT EXISTS news (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   title TEXT NOT NULL,
@@ -16,14 +14,12 @@ CREATE TABLE IF NOT EXISTS news (
   link TEXT
 );
 
--- Tutorials (YouTube embeds)
 CREATE TABLE IF NOT EXISTS tutorials (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   title TEXT NOT NULL,
   url TEXT NOT NULL
 );
 
--- PDFs (local or external)
 CREATE TABLE IF NOT EXISTS pdfs (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   title TEXT NOT NULL,

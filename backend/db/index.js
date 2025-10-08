@@ -6,15 +6,8 @@ const dbPath = path.join(__dirname, 'ciap.sqlite');
 const schemaPath = path.join(__dirname, 'schema.sql');
 const seedPath = path.join(__dirname, 'seed.sql');
 
-function open() {
-  return new sqlite3.Database(dbPath);
-}
-
-function runSql(db, sql) {
-  return new Promise((resolve, reject) => {
-    db.exec(sql, (err) => (err ? reject(err) : resolve()));
-  });
-}
+function open() { return new sqlite3.Database(dbPath); }
+function runSql(db, sql) { return new Promise((res, rej) => db.exec(sql, err => err ? rej(err) : res())); }
 
 async function migrate() {
   const db = open();
@@ -22,20 +15,16 @@ async function migrate() {
     const schema = fs.readFileSync(schemaPath, 'utf8');
     await runSql(db, schema);
     console.log('DB migrated ✅');
-  } finally {
-    db.close();
-  }
+  } finally { db.close(); }
 }
 
 async function seed() {
   const db = open();
   try {
-    const seedSql = fs.readFileSync(seedPath, 'utf8');
-    await runSql(db, seedSql);
+    const data = fs.readFileSync(seedPath, 'utf8');
+    await runSql(db, data);
     console.log('DB seeded 🌱');
-  } finally {
-    db.close();
-  }
+  } finally { db.close(); }
 }
 
 async function reset() {
