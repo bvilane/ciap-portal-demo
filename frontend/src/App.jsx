@@ -44,7 +44,7 @@ export default function App(){
           <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:16}}>
             <div>
               <h3>CIAP</h3>
-              <p>Offline-First access for communities. Mesh + Caching + Simple UI.</p>
+              <p>Offline-First access for communities.</p>
             </div>
             <div>
               <div className="kicker">Quick Links</div>
